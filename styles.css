@@ -563,3 +563,245 @@ footer {
   100% { transform: translateX(-50%); }
 }
 
+
+/* ===== Mobile & Small-Screen Fixes (appended) ===== */
+
+/* Improve sticky header behavior and safe areas */
+:root {
+--header-height: 56px;
+}
+html {
+scroll-padding-top: var(--header-height);
+}
+@supports (padding: max(0px)) {
+body {
+  padding-left: max(0px, env(safe-area-inset-left));
+  padding-right: max(0px, env(safe-area-inset-right));
+}
+}
+
+/* Navigation: keep brand visible, let links wrap/scroll on small screens */
+header {
+height: auto;
+}
+.nav {
+display: flex;
+align-items: center;
+gap: 10px;
+flex-wrap: wrap; /* allow wrap on small screens */
+}
+.brand {
+flex: 1 1 auto; /* brand keeps its space */
+min-width: 0;
+}
+.nav a {
+display: inline-flex;
+align-items: center;
+padding: 8px 10px;            /* bigger tap target */
+margin-left: 0;               /* remove left-only margin */
+margin-right: 8px;            /* balanced spacing */
+white-space: nowrap;          /* no mid-word wrap */
+}
+@media (max-width: 768px) {
+.nav {
+  gap: 8px;
+}
+/* Create a dedicated row for links if brand + buttons take a row */
+.nav > a, .nav > .btn, .nav > nav, .nav > ul {
+  order: 2;
+}
+.brand {
+  order: 1;
+  width: 100%;
+}
+
+/* If there are many links, allow horizontal scroll instead of wrapping chaos */
+.nav {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.nav::-webkit-scrollbar {
+  display: none;
+}
+}
+
+/* Container breathing room on mobile */
+@media (max-width: 768px) {
+.container {
+  padding: 0 14px;
+}
+}
+
+/* Hero layout and typography scaling */
+@media (max-width: 1024px) {
+.hero {
+  grid-template-columns: 1fr 300px;
+  gap: 22px;
+}
+}
+@media (max-width: 800px) {
+.hero {
+  grid-template-columns: 1fr; /* ensure override applies last */
+  gap: 18px;
+  margin-top: 24px;
+}
+.hero h1 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+.lead {
+  font-size: 1rem;
+}
+.hero-ctas {
+  flex-wrap: wrap;
+}
+}
+
+/* Cards & grids tighten on small screens */
+@media (max-width: 768px) {
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+.card {
+  padding: 14px;
+}
+}
+
+/* Lead magnet: input should fill row on small screens */
+@media (max-width: 600px) {
+.leadmag {
+  flex-direction: column;
+  align-items: stretch;
+}
+.leadmag input {
+  width: 100%;
+}
+}
+
+/* Media blocks: avoid squishing below minimum widths */
+.media > * {
+min-width: 240px;
+}
+@media (max-width: 600px) {
+.media {
+  flex-direction: column;
+}
+.media > * {
+  min-width: 0;
+  width: 100%;
+}
+}
+
+/* Contact section spacing and inputs */
+@media (max-width: 768px) {
+#contact {
+  margin-top: 20px;
+}
+#contactForm {
+  padding: 16px;
+}
+#contactForm input,
+#contactForm textarea {
+  font-size: 1rem;
+}
+}
+
+/* Quick booking buttons stay tappable but not oversized */
+@media (max-width: 768px) {
+.quick-booking {
+  gap: 10px;
+}
+.quick-booking button {
+  padding: 10px 14px;
+}
+}
+
+/* Catalog grid scales down cleanly */
+@media (max-width: 768px) {
+.catalog-section {
+  padding: 28px 12px;
+}
+.catalog-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+}
+.catalog-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+.book-card {
+  padding: 12px;
+}
+.book-card h3 {
+  font-size: 0.95rem;
+}
+.book-card p {
+  font-size: 0.82rem;
+}
+}
+
+/* About section typography */
+@media (max-width: 768px) {
+.about-section {
+  padding: 40px 16px;
+}
+.about-section h2 {
+  font-size: 1.6rem;
+}
+.about-section p {
+  font-size: 1rem;
+  padding: 0 4px;
+}
+}
+
+/* Carousel height responsive */
+@media (max-width: 1024px) {
+.hero-carousel {
+  height: 420px;
+}
+}
+@media (max-width: 768px) {
+.hero-carousel {
+  height: 320px;
+}
+.slide-text {
+  left: 20px;
+  right: 20px;
+  bottom: 24px;
+  font-size: 0.95rem;
+}
+}
+
+/* WhatsApp button smaller on phones */
+@media (max-width: 768px) {
+.whatsapp-float {
+  width: 52px;
+  height: 52px;
+  bottom: 16px;
+  right: 16px;
+}
+}
+
+/* Trusted logos scale and spacing */
+@media (max-width: 768px) {
+.trusted-section {
+  padding: 36px 16px;
+}
+.trusted-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+.logo-track img {
+  width: 110px;
+  margin: 0 18px;
+}
+}
+
+/* Reduce header intensity slightly for readability on mobile */
+@media (max-width: 768px) {
+header {
+  background: rgba(235, 5, 5, 0.95);
+}
+}
+
