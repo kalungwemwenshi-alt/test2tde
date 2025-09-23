@@ -4,6 +4,7 @@
   - Accessible color contrast and focus states
   - Responsive, mobile-first layout
 */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
   /* Brand palette */
@@ -44,7 +45,7 @@
   --container: 1200px;
   --gutter: 20px;
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  --font-sans: "Plus Jakarta Sans", Inter, "SF Pro Text", -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
   --font-weight-strong: 750;
 
   --shadow-sm: 0 1px 2px rgba(0,0,0,.04), 0 1px 1px rgba(0,0,0,.03);
@@ -629,3 +630,29 @@ main > section#testimonials {
   .hero-carousel { height: clamp(220px, 44vh, 360px); }
 }
 .hero-carousel .slide img { height: 100%; object-fit: cover; }
+
+/* --- Containers: square corners (remove rounded edges) --- */
+.card,
+.media .video,
+.media .product,
+.book-card,
+.testimonial,
+.about-section .container,
+.leadmag,
+main > section,
+.modal,
+.portrait { border-radius: 0; }
+
+/* --- Mobile typography: refine and reduce sizes --- */
+@media (max-width: 720px) {
+  body { font-size: 15px; }
+  header nav a { font-size: 13px; }
+  .hero h1 { font-size: clamp(24px, 6vw, 34px); }
+  .lead { font-size: 14px; }
+}
+@media (max-width: 460px) {
+  body { font-size: 14px; }
+  header nav a { font-size: 12px; }
+  .hero h1 { font-size: clamp(22px, 7vw, 30px); }
+  .lead { font-size: 13px; }
+}
